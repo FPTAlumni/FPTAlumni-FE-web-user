@@ -6,8 +6,6 @@ import "./App.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
-
 function App() {
   const [count, setCount] = useState(0);
   const [pics, setPics] = useState([]);
@@ -22,39 +20,41 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Navbar bg="dark" expand="lg">
-        <Container>
-          <Navbar.Brand>
-            <p className="white-text">Nyam IV</p>
-          </Navbar.Brand>
-          <Navbar.Toggle color="white" aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">
-                <p className="white-text">Home</p>
-              </Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Container>
-        Your <FontAwesomeIcon icon="coffee" /> is hot and ready!
-      </Container>
+    <div className="App container">
+      <div className="w-screen grid grid-cols-7">
+        <div className="h-screen col-span-1 bg-blue-900">
+          <div className="flex flex-col justify-center h-24">
+            <p className="text-center text-g text-2xl">
+              <FontAwesomeIcon className="fa-fw" icon="dog" size="lg" />
+              Nyam IV
+            </p>
+          </div>
+          <nav className="text-lg font-semibold text-white">
+            <a href="#" className="block py-3 px-4 hover:bg-red-300 ">
+              <FontAwesomeIcon className="fa-fw" icon="home" size="lg" />
+              <span className="pl-8">Home</span>
+            </a>
+            <a href="#" className="block py-3 px-4 hover:bg-red-300">
+              <FontAwesomeIcon className="fa-fw" icon="ambulance" size="lg" />
+              <span className="pl-8">Ambu</span>
+            </a>
+            <a href="#" className="block py-3 px-4 hover:bg-red-300">
+              <FontAwesomeIcon
+                className="fa-fw"
+                icon="address-book"
+                size="lg"
+              />
+              <span className="pl-8">Address</span>
+            </a>
+          </nav>
+        </div>
+        <div className="col-span-6 bg-green-200">
+          <div className="h-screen grid grid-rows-5 gap-1">
+            <div className="row-span-1 bg-green-500">2</div>
+            <div className="row-span-3">3</div>
+          </div>
+        </div>
+      </div>
       {/* {pics.map((img) => (
           <ul>
             <img src={img.file_url} />
