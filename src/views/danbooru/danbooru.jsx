@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getPic } from "../../apis/endpoint/danbooru";
 
-
 export default function Danbooru() {
   const [pics, setPics] = useState([]);
 
@@ -17,9 +16,9 @@ export default function Danbooru() {
   return (
     <>
       {pics.map((img) => (
-        <ul>
+        <li key={img.id} className="list-none">
           <img src={img.file_url} />
-        </ul>
+        </li>
       ))}
     </>
   );

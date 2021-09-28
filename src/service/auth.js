@@ -15,7 +15,13 @@ const getLogin = async () => {
     localStorage.setItem("accessToken", token);
     localStorage.setItem("userInfo", JSON.stringify(user));
 
-    return true;
+    const usr = {
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+    };
+
+    return [true, usr];
   } catch (error) {
     // Handle Errors here.
     const errorCode = error.code;

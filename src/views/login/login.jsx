@@ -4,16 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./login.css";
 
 import { getLogin } from "../../service/auth";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { loggedIn, setUserInfo } from "../../util/store/auth/authSlice";
 
 export default function Login() {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     const isLogged = await getLogin();
-    console.log("[LoginJSX] can log" + isLogged);
-    if (isLogged) {
-      history.push("/");
+    console.log("[LoginJSX] can log " + isLogged);
+
+    if (Array.isArray(isLogged) && isLogged[0]) {
+      dispatch(loggedIn());
+      dispatch(setUserInfo(isLogged[1]));
+      navigate("/");
     }
   };
 

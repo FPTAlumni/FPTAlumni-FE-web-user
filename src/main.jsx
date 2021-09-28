@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import "./index.css";
-import App from "./views/App";
-import "tailwindcss/tailwind.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { Provider } from "react-redux";
+
+import App from "./views/App";
+import store from "./util/store/store";
+
+import "./index.css";
+import "tailwindcss/tailwind.css";
+
 import {
   faHome,
   faAddressBook,
@@ -30,7 +35,9 @@ library.add(
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
