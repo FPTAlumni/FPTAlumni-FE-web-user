@@ -1,29 +1,21 @@
 import { useEffect, useState } from "react";
 
-import { getPic } from "../apis/endpoint/danbooru";
 import logo from "../logo.svg";
 import "./App.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Route, Switch } from "react-router";
+import Danbooru from "../components/danbooru/danbooru";
+import Home from "../components/home/home";
+import { Link } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [isDisplay, setIsDisplay] = useState(false);
   const [isSidebarShow, setIsSidebarShow] = useState(false);
-  const [pics, setPics] = useState([]);
-
-  async function getImg() {
-    // const pic = await getPic();
-    setPics(pic);
-  }
 
   const showSidebarMobile = () => {
     setIsSidebarShow(!isSidebarShow);
   };
-
-  useEffect(() => {
-    // getImg();
-  }, []);
 
   return (
     <div className="App">
@@ -50,21 +42,21 @@ function App() {
           </div>
           <nav className="text-sm divide-y font-semibold text-white">
             <a
-              href="#"
+              href="/home"
               className="block py-3 px-4 transition duration-150 rounded-lg 
               hover:bg-red-300 active:bg-red-400"
             >
               <FontAwesomeIcon className="fa-fw" icon="home" size="lg" />
               <span className="pl-8">Home</span>
             </a>
-            <a
-              href="#"
+            <Link
+              to="/dan"
               className="block py-3 px-4 transition duration-150 rounded-lg 
               hover:bg-red-300 active:bg-red-400"
             >
               <FontAwesomeIcon className="fa-fw" icon="ambulance" size="lg" />
               <span className="pl-8">Ambu</span>
-            </a>
+            </Link>
             <a
               href="#"
               className="block py-3 px-4 transition duration-150 rounded-lg 
@@ -124,9 +116,9 @@ function App() {
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           ></path>
                         </svg>
@@ -149,9 +141,9 @@ function App() {
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                           ></path>
                         </svg>
@@ -165,14 +157,16 @@ function App() {
             {/* avatar user */}
           </div>
           <hr />
-          <div className="bg-gray-300"></div>
+          <div className="bg-gray-300">
+            {/* content */}
+            <Switch>
+              <Route exact path="/home" component={Home} />
+              <Route path="/dan" component={Danbooru} />
+            </Switch>
+            {/* content */}
+          </div>
         </div>
       </div>
-      {/* {pics.map((img) => (
-          <ul>
-            <img src={img.file_url} />
-          </ul>
-        ))} */}
     </div>
   );
 }
