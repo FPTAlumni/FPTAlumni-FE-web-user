@@ -29,16 +29,25 @@ function App() {
               Nyam IV
             </p>
           </div>
-          <nav className="text-lg font-semibold text-white">
-            <a href="#" className="block py-3 px-4 hover:bg-red-300 ">
+          <nav className="text-sm font-semibold text-white">
+            <a
+              href="#"
+              className="block py-3 px-4 transition duration-150 rounded-lg hover:bg-red-300 "
+            >
               <FontAwesomeIcon className="fa-fw" icon="home" size="lg" />
               <span className="pl-8">Home</span>
             </a>
-            <a href="#" className="block py-3 px-4 hover:bg-red-300">
+            <a
+              href="#"
+              className="block py-3 px-4 transition duration-150 rounded-lg hover:bg-red-300"
+            >
               <FontAwesomeIcon className="fa-fw" icon="ambulance" size="lg" />
               <span className="pl-8">Ambu</span>
             </a>
-            <a href="#" className="block py-3 px-4 hover:bg-red-300">
+            <a
+              href="#"
+              className="block py-3 px-4 transition duration-150 rounded-lg hover:bg-red-300"
+            >
               <FontAwesomeIcon
                 className="fa-fw"
                 icon="address-book"
