@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from 'qs'
 import { axiosInterceptor } from "./apiInterceptor";
 
 const axiosClient = axios.create({
@@ -7,6 +8,7 @@ const axiosClient = axios.create({
     "Accept": "application/json",
     "Content-Type": "application/json",
   },
+  paramsSerializer: params => qs.stringify(params, {arrayFormat: 'repeat'})
 });
 
 const apiClient = axiosInterceptor(axiosClient);

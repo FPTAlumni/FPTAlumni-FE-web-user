@@ -1,0 +1,18 @@
+.bg-login {
+  background: #f0f4ff;
+}
+.text-gg {
+  color: #0C4271;
+}
+
+.neumor {
+  height: 350px;
+  width: 600px;
+  border-radius: 35px;
+  background: #f0f4ff;
+  box-shadow: 9px 9px 18px #bbbec7, -9px -9px 18px #ffffff;
+}
+
+.text-jean {
+  color: #0c4271;
+}
