@@ -9,12 +9,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function App() {
   const [count, setCount] = useState(0);
   const [isDisplay, setIsDisplay] = useState(false);
+  const [isSidebarShow, setIsSidebarShow] = useState(false);
   const [pics, setPics] = useState([]);
 
   async function getImg() {
     // const pic = await getPic();
     setPics(pic);
   }
+
+  const showSidebarMobile = () => {
+    setIsSidebarShow(!isSidebarShow);
+  };
 
   useEffect(() => {
     // getImg();
@@ -25,15 +30,23 @@ function App() {
       {/* sidebar */}
       <div className="min-h-screen relative flex">
         <div
-          className=" w-60 bg-blue-500 absolute md:relative md:translate-x-0
-           inset-y-0 left-0 transform -translate-x-full 
-          transition duration-200 ease-in-out"
+          className={`w-60 bg-blue-500 absolute md:relative md:translate-x-0
+          inset-y-0 left-0 transform ${
+            isSidebarShow ? "" : "-translate-x-full"
+          } 
+         transition duration-200 ease-in-out`}
         >
-          <div className="flex flex-col justify-center h-24">
+          <div className="md:flex flex-col justify-center h-24 hidden">
             <p className="text-center text-g text-2xl">
               <FontAwesomeIcon className="fa-fw" icon="dog" size="lg" />
               Nyam IV
             </p>
+          </div>
+          <div
+            onClick={showSidebarMobile}
+            className="text-right mt-3 md:hidden"
+          >
+            <FontAwesomeIcon className="text-g mr-4" icon="times" size="lg" />
           </div>
           <nav className="text-sm divide-y font-semibold text-white">
             <a
@@ -67,8 +80,14 @@ function App() {
           </nav>
         </div>
         {/* sidebar */}
-        <div className=" container">
-          <div className="h-24 flex justify-end">
+        <div className="w-screen md:container">
+          <div className="h-24 flex justify-between md:justify-end">
+            {/* avatar user */}
+            <div className="flex">
+              <p onClick={showSidebarMobile} className="self-center md:hidden">
+                <FontAwesomeIcon className="fa-fw ml-3" icon="dog" size="2x" />
+              </p>
+            </div>
             <div className="border-b-4 border-transparent py-3 mr-9 self-center">
               <div
                 onClick={() => setIsDisplay(!isDisplay)}
@@ -143,8 +162,10 @@ function App() {
                 </ul>
               </div>
             </div>
+            {/* avatar user */}
           </div>
-          <div className=" bg-gray-300">Header</div>
+          <hr />
+          <div className="bg-gray-300"></div>
         </div>
       </div>
       {/* {pics.map((img) => (

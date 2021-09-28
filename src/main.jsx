@@ -9,9 +9,22 @@ import {
   faAddressBook,
   faAmbulance,
   faDog,
+  faHamburger,
+  faAngleDoubleLeft,
+  faCaretLeft,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHome, faAddressBook, faAmbulance, faDog);
+library.add(
+  faHome,
+  faAddressBook,
+  faAmbulance,
+  faDog,
+  faHamburger,
+  faAngleDoubleLeft,
+  faCaretLeft,
+  faTimes,
+);
 
 ReactDOM.render(
   <React.StrictMode>
