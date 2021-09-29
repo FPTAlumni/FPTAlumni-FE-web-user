@@ -13,13 +13,13 @@ const getLogin = async () => {
     console.log(`[Login]User: ${user.displayName}`);
     console.log(`[Login]Token: ${user.getIdToken()}`);
     localStorage.setItem("accessToken", token);
-    localStorage.setItem("userInfo", JSON.stringify(user));
-
+    
     const usr = {
       displayName: user.displayName,
       email: user.email,
       photoURL: user.photoURL,
     };
+    localStorage.setItem("userInfo", JSON.stringify(usr));
 
     return [true, usr];
   } catch (error) {

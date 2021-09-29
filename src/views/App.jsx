@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRoutes } from "react-router";
 import { initializeApp } from "@firebase/app";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { loggedIn, setUserInfo } from "../util/store/auth/authSlice";
 
 import logo from "../logo.svg";
 import "./App.css";
@@ -19,8 +20,18 @@ function App() {
   };
 
   const fbApp = initializeApp(firebaseConfig);
-
+  
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+
+  const haveToken = localStorage.getItem("accessToken");
+  const usrInfo = localStorage.getItem("userInfo");
+
+  if (!isLoggedIn && haveToken && usrInfo) {
+    dispatch(loggedIn());
+    dispatch(setUserInfo(JSON.parse(usrInfo)));
+  }
+
 
   const routing = useRoutes(router(isLoggedIn));
 

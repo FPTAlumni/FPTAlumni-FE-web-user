@@ -1,11 +1,27 @@
-.App{
-    background: #f0f4ff;
+.App {
+  background: #f0f4ff;
 }
 
-.text-g{
-    color: #E6E6E6;
+.text-g {
+  color: #e6e6e6;
 }
 
-.bg-sidebar{
-    background-color: #0A81AB;
+.bg-sidebar {
+  background-color: #0a81ab;
+}
+
+.content-card {
+  height: 98%;
+  border-radius: 30px;
+  background: #f0f4ff;
+  box-shadow: 10px 10px 20px #d8dce6, -10px -10px 20px #ffffff;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

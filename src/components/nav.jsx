@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, Outlet } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { loggedOut } from "../util/store/auth/authSlice";
-
+import { getNameFromRoute } from "../util/router/routerHelper";
 
 export default function Nav(props) {
   const [isDisplay, setIsDisplay] = useState(false);
@@ -11,10 +11,13 @@ export default function Nav(props) {
 
   const userInfo = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const showSidebarMobile = () => {
     setIsSidebarShow(!isSidebarShow);
   };
+
+  useEffect(() => console.log(getNameFromRoute(location)), []);
   return (
     <>
       {/* sidebar */}
@@ -39,26 +42,32 @@ export default function Nav(props) {
             <FontAwesomeIcon className="text-g mr-4" icon="times" size="lg" />
           </div>
           <nav className="text-sm divide-y font-semibold text-white">
-            <Link
-              to="/"
-              className="block py-3 px-4 transition duration-150 rounded-lg 
-              hover:bg-red-300 active:bg-red-400"
+            <NavLink
+              to="/home"
+              className={({ isActive }) => `${
+                isActive ? "bg-red-300" : ""
+              } block py-3 px-4 transition duration-150 rounded-lg 
+              hover:bg-red-300 active:bg-red-400`}
             >
               <FontAwesomeIcon className="fa-fw" icon="home" size="lg" />
               <span className="pl-8">Home</span>
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/dan"
-              className="block py-3 px-4 transition duration-150 rounded-lg 
-              hover:bg-red-300 active:bg-red-400"
+              className={({ isActive }) => `${
+                isActive ? "bg-red-300" : ""
+              } block py-3 px-4 transition duration-150 rounded-lg 
+              hover:bg-red-300 active:bg-red-400`}
             >
               <FontAwesomeIcon className="fa-fw" icon="ambulance" size="lg" />
               <span className="pl-8">Danbo</span>
-            </Link>
-            <a
-              href="#"
-              className="block py-3 px-4 transition duration-150 rounded-lg 
-              hover:bg-red-300 active:bg-red-400"
+            </NavLink>
+            <NavLink
+              to="/login"
+              className={({ isActive }) => `${
+                isActive ? "bg-red-300" : ""
+              } block py-3 px-4 transition duration-150 rounded-lg 
+              hover:bg-red-300 active:bg-red-400`}
             >
               <FontAwesomeIcon
                 className="fa-fw"
@@ -66,11 +75,11 @@ export default function Nav(props) {
                 size="lg"
               />
               <span className="pl-8">Address</span>
-            </a>
+            </NavLink>
           </nav>
         </div>
         {/* sidebar */}
-        <div className="w-screen md:container">
+        <div className="w-screen md:container flex flex-col">
           <div className="h-24 flex justify-between md:justify-end">
             {/* avatar user */}
             <div className="flex">
@@ -155,7 +164,7 @@ export default function Nav(props) {
             {/* avatar user */}
           </div>
           <hr />
-          <div className="bg-gray-300">
+          <div className="flex-1">
             {/* content */}
             <Outlet />
             {/* content */}
