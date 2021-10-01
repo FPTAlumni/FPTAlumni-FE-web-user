@@ -18,6 +18,7 @@ import {
   faHamburger,
   faAngleDoubleLeft,
   faCaretLeft,
+  faCaretRight,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -29,7 +30,8 @@ library.add(
   faHamburger,
   faAngleDoubleLeft,
   faCaretLeft,
-  faTimes
+  faCaretRight,
+  faTimes,
 );
 
 ReactDOM.render(

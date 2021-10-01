@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import {
+  NavLink,
+  Outlet,
+  useLocation,
+  useResolvedPath,
+} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loggedOut } from "../util/store/auth/authSlice";
 import { getNameFromRoute } from "../util/router/routerHelper";
+import BreadcrumbsItem from "./breadcrumbs";
 
 export default function Nav(props) {
   const [isDisplay, setIsDisplay] = useState(false);
@@ -12,12 +18,20 @@ export default function Nav(props) {
   const userInfo = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const location = useLocation();
+  const resolvePath = useResolvedPath("");
+
+  const isActivePath = location.pathname === resolvePath.pathname;
 
   const showSidebarMobile = () => {
     setIsSidebarShow(!isSidebarShow);
   };
 
-  useEffect(() => console.log(getNameFromRoute(location)), []);
+  const logOut = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userInfo");
+    dispatch(loggedOut());
+  };
+
   return (
     <>
       {/* sidebar */}
@@ -41,7 +55,7 @@ export default function Nav(props) {
           >
             <FontAwesomeIcon className="text-g mr-4" icon="times" size="lg" />
           </div>
-          <nav className="text-sm divide-y font-semibold text-white">
+          <nav className="text-sm font-semibold text-white">
             <NavLink
               to="/home"
               className={({ isActive }) => `${
@@ -136,7 +150,7 @@ export default function Nav(props) {
                   <hr className="dark:border-gray-700" />
                   <li className="font-normal">
                     <a
-                      onClick={() => dispatch(loggedOut())}
+                      onClick={logOut}
                       className="flex cursor-pointer items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600"
                     >
                       <div className="mr-3 text-red-600">
@@ -166,6 +180,7 @@ export default function Nav(props) {
           <hr />
           <div className="flex-1">
             {/* content */}
+            <BreadcrumbsItem text={props.text}/>
             <Outlet />
             {/* content */}
           </div>
